@@ -1,0 +1,154 @@
+/* General Styles */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f8f9fc;
+  color: #333;
+  margin: 0;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #03023d;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(141, 10, 10, 0.1);
+}
+
+.navbar h2 {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Sidebar */
+.sidebar {
+  background-color: #3e0a0a;
+  color: #fff;
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 20px;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #ffffff;
+  display: block;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.sidebar a:hover {
+  background-color: #374151;
+}
+
+.sidebar .active {
+  background-color: #4c51bf;
+}
+
+/* Main Content */
+.main-content {
+  margin-left: 270px;
+  padding: 20px;
+}
+
+/* Services Table */
+.services-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.services-table th,
+.services-table td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.services-table th {
+  background-color: #f2f2f2;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.services-table td {
+  border-bottom: 1px solid #ddd;
+}
+
+.services-table img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.pagination button {
+  background: #f2f2f2;
+  border: none;
+  padding: 8px 12px;
+  margin: 0 5px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.pagination .active {
+  background: #007bff;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Add Service Button */
+.add-service-btn {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 20px;
+  text-decoration: none;
+}
+
+.add-service-btn:hover {
+  background-color: #0056b3;
+}
