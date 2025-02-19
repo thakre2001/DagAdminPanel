@@ -1,5 +1,19 @@
+body{
+    overflow-x: hidden;
+}
+
+.main-header{
+    display: flex;
+    justify-content: end;
+    color: rgb(196, 196, 196);
+}
 .navbar-header{
+    position: relative;
     margin-top: 0;
     top: 0;
+    width: 100%;
     background-color: white;
+    
 }
+
+

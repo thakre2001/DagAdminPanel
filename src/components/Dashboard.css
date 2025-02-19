@@ -1,0 +1,32 @@
+.dashboard-layout {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  /* Sidebar should have a fixed width on larger screens */
+  .dashboard-layout .sidebar {
+    width: 250px;
+    flex-shrink: 0;
+  }
+  
+  /* Main content takes remaining space */
+  .dashboard-layout .main-content {
+    flex-grow: 1;
+    padding: 20px;
+  }
+  
+  /* On small screens, stack the layout (sidebar hidden or overlayed) */
+  @media (max-width: 768px) {
+    .dashboard-layout {
+      flex-direction: column;
+    }
+    .dashboard-layout .sidebar {
+      width: 100%;
+      position: relative; /* or fixed overlay if needed */
+    }
+    .dashboard-layout .main-content {
+      margin-top: 0;
+      padding: 10px;
+    }
+  }
+  

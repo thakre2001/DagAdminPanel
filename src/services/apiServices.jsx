@@ -26,8 +26,8 @@ import axios from "axios"
 export class apiServices{
 
   
-  // static serverURL="https://www.directadmissionguideline.com/api"
-  static serverURL="http://localhost:8080"
+  static serverURL="https://www.directadmissionguideline.com/api"
+  // static serverURL="http://localhost:8080"
 
   static async getAllServices(){
     const dataURL=`${this.serverURL}/getAllServices`
@@ -38,6 +38,18 @@ export class apiServices{
   static async addService(payload){
     const dataURL=`${this.serverURL}/addservices`
     const response=await axios.post(dataURL,payload)
+    return response
+  }
+
+  static async editService(id,payload){
+    const dataURL=`${this.serverURL}/updateService/${id}`
+    const response=await axios.put(dataURL,payload)
+    return response
+  }
+
+  static async deleteService(id){
+    const dataURL=`${this.serverURL}/deleteServices/${id}`
+    const response=await axios.delete(dataURL)
     return response
   }
 
