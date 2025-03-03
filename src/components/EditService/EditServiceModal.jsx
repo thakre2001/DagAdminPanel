@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { apiServices } from '../../services/apiServices';
 
-const EditServiceModal = ({ service, onSave, onClose }) => {
+const EditServiceModal = ({ service, onSave, onClose, allService }) => {
   const [formData, setFormData] = useState({
     tittle: service.tittle || '',
     discription: service.discription || '',
-    img: null
+    img: null,
+    type: service.type || ''
   });
 
   useEffect(() => {
@@ -32,6 +34,7 @@ const EditServiceModal = ({ service, onSave, onClose }) => {
     if (formData.img) {
       payload.append('file', formData.img);
     }
+    payload.append('type', formData.type)
     onSave(service.id, payload);
   };
 
@@ -44,6 +47,9 @@ const EditServiceModal = ({ service, onSave, onClose }) => {
             <button type="button" className="btn-close" onClick={onClose}></button>
           </div>
           <div className="modal-body">
+            <h6 className='text-danger text-center'>
+              This service type is <span className='fs-5'>{formData.type}</span>
+            </h6>
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
                 <label className="form-label">Title</label>
@@ -74,6 +80,18 @@ const EditServiceModal = ({ service, onSave, onClose }) => {
                   name="img"
                   onChange={handleInputChange}
                 />
+              </div>
+              <div className="mb-3">
+                <label className="form-label">Type</label>
+                <select name='type' onChange={handleInputChange}>
+                  <option disabled='disabled' selected>select</option>
+                  <option>main-service</option>
+                  {
+                    allService.map((service) => {
+                      return <option>{service.tittle}</option>
+                    })
+                  }
+                </select>
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" onClick={onClose}>

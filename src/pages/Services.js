@@ -4,6 +4,7 @@ import { replace, useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer/Footer';
 import EditServiceModal from '../components/EditService/EditServiceModal';
 import Navbar from '../components/Header/Navbar';
+import './Service.css'
 
 const Services = () => {
   const [services, setServices] = useState([]);
@@ -12,7 +13,8 @@ const Services = () => {
   const [formData, setFormData] = useState({
     tittle: '',
     discription: '',
-    img: ''
+    img: '',
+    type:''
   });
 
   const navigate = useNavigate()
@@ -21,13 +23,13 @@ const Services = () => {
     const fetchServices = async () => {
       try {
         const response = await apiServices.getAllServices();
-        console.log('API Response:', response.data);
+        // console.log('API Response:', response.data);
 
         if (Array.isArray(response.data)) {
           setServices(response.data);
-          response.data.forEach((service, index) => {
-            console.log(`Service ${index}:`, service);
-          });
+          // response.data.forEach((service, index) => {
+          //   console.log(`Service ${index}:`, service);
+          // });
         } else {
           console.error("Response data is not an array:", response.data);
         }
@@ -67,10 +69,11 @@ const Services = () => {
     if (formData.img) {
       payload.append('file', formData.img);
     }
+    payload.append('type',formData.type)
 
     try {
       const response = await apiServices.addService(payload);
-      setFormData({ tittle: '', discription: '', img: '' });
+      setFormData({ tittle: '', discription: '', img: '' ,type:''});
       setServices([...services, response.data]); // Add the new service to the state
 
       const modalElement = document.getElementById('addServiceModal');
@@ -156,9 +159,8 @@ const Services = () => {
 
   return (
     <>
-      <div className="services-container" 
-        style={{ marginLeft: 250, zIndex: 500, marginTop: 50,backgroundColor:'rgb(237, 237, 237)' }}>
-        <div className='box-shadow m-5'>
+      <div className="services-container" >
+        <div className='mainContent box-shadow m-5'>
           <div className="header">
             <h1>Services</h1>
           </div>
@@ -186,33 +188,41 @@ const Services = () => {
                     <th style={{ width: "15%" }}>TITLE</th>
                     <th style={{ width: "25%" }}>DESCRIPTION</th>
                     <th style={{ width: "25%" }}>IMAGE</th>
+                    <th style={{ width: "20%" }}>TYPE</th>
                     <th style={{ width: "20%" }}>ACTION</th>
                   </tr>
                 </thead>
                 <tbody className='mt-2'>
                   {services.map((service, index) => (
                     <tr key={index} className="border-bottom">
-                      <td className="fw-bold p-3 bg-light shadow">{service.tittle}</td>
-                      <td className="p-3 bg-light">{service.discription}</td>
+                      <td className="col-2 fw-bold p-3 bg-light shadow">
+                        {service.tittle}
+                      </td>
+                      <td className='col-4 text-start bg-light'>
+                          {service.discription}
+                      </td>
                       <td className="p-3 bg-light">
                         {service.img ? (
                           <img
                             src={`data:image/png;base64,${service.img}`}
                             alt={service.tittle}
                             className="img-fluid rounded shadow-sm"
-                            style={{ width: "100%", height: "250px", objectFit: "cover", borderRadius: "10px" }}
+                            style={{ width: "100%", height: "200px", objectFit: "cover", borderRadius: "10px" }}
                           />
                         ) : (
                           <span className="text-muted">No Image</span>
                         )}
                       </td>
+                      <td className="p-3 bg-light fw-bold">
+                        {service.type}
+                      </td>
                       <td className="p-3 bg-light">
-                        <div className="d-flex justify-content-center gap-3">
-                          <button className="btn btn-sm btn-warning px-4 py-2"
+                        <div className="d-flex flex-column justify-content-center gap-3">
+                          <button className="btn btn-sm btn-warning px-3 py-2"
                             onClick={() => openEditModal(service)}>
                             <i className="fas fa-edit"></i> Edit
                           </button>
-                          <button className="btn btn-sm btn-danger px-4 py-2"
+                          <button className="btn btn-sm btn-danger px-3 py-2"
                             onClick={() => handleDeleteService(service.id)}>
                             <i className="fas fa-trash"></i> Delete
                           </button>
@@ -268,6 +278,18 @@ const Services = () => {
                         required
                       />
                     </div>
+                    <div className="mb-3">
+                      <label className="form-label">Type</label>
+                      <select onChange={handleInputChange} name='type' value={formData.type}>
+                        <option disabled='disabled' selected>select</option>
+                        <option autoFocus>main-service</option>
+                        {
+                          services.map((service)=>{
+                            return <option>{service.tittle}</option>
+                          })
+                        }
+                      </select>
+                    </div>
                     <div className="modal-footer">
                       <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                       <button type="submit" className="btn btn-primary">Add Service</button>
@@ -282,6 +304,7 @@ const Services = () => {
               service={selectedService}
               onSave={handleEditSave}
               onClose={closeEditModal}
+              allService={services}
             />
           )}
         </div>

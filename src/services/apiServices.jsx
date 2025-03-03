@@ -26,9 +26,18 @@ import axios from "axios"
 export class apiServices{
 
   
-  static serverURL="https://www.directadmissionguideline.com/api"
-  // static serverURL="http://localhost:8080"
+  // static serverURL="https://www.directadmissionguideline.com/api"
+  static serverURL="http://localhost:8080"
 
+  // USER APIs
+  static async loginUser(loggedInUser){
+    const dataURL=`${this.serverURL}/userlogin`
+    const response=await axios.post(dataURL,loggedInUser)
+    return response
+
+  }
+
+  // SERVISE APIs
   static async getAllServices(){
     const dataURL=`${this.serverURL}/getAllServices`
     const response=await axios.get(dataURL)
@@ -52,5 +61,7 @@ export class apiServices{
     const response=await axios.delete(dataURL)
     return response
   }
+
+  // CAREER APIs
 
 }

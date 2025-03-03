@@ -1,0 +1,32 @@
+.services-container {
+    margin-left: 250px;
+    z-index: 500;
+    margin-top: 50px;
+    background-color: rgb(237, 237, 237);
+    padding: 1px;
+}
+
+.mainContent{
+    margin-top: 100px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+@media (max-width: 767px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .services-container{
+        margin: 0;
+        z-index: 500;
+    margin-top: 50px;
+    background-color: rgb(237, 237, 237);
+    }
+}
+
+/* .dataContainer{
+    width: 100%;
+    height: 200px;
+} */

@@ -8,6 +8,7 @@ import Careers from "./components/Career/Careers";
 import PrivateRoute from "./components/PrivateRoute";
 import "./styles.css";
 import Login from "./components/Login/Login";
+import Inquiry from "./components/Inquiry/Inquiry";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
             <Route path="/services" element={<PrivateRoute><Services /></PrivateRoute>} />
             <Route path="/careers" element={<PrivateRoute><Careers /></PrivateRoute>} />
+            <Route path="/inquiry" element={<PrivateRoute><Inquiry /></PrivateRoute>} />
 
             {/* Catch-all route */}
             <Route path="*" element={<Navigate to="/login" />} />

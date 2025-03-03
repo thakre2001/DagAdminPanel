@@ -24,7 +24,7 @@ const Careers = () => {
 
   // Fetch careers from the backend
   useEffect(() => {
-    axios.get("https://www.directadmissionguideline.com/api/getallcarrer") // Update with your backend endpoint
+    axios.get("http://localhost:8080/getallcarrer") // Update with your backend endpoint
       .then((response) => {
         setCareers(response.data);
       })
@@ -42,7 +42,7 @@ const Careers = () => {
   // Handle form submission to add a new career
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("https://www.directadmissionguideline.com/api/addCarrer", formData) // Update with your backend endpoint
+    axios.post("http://localhost:8080/addCarrer", formData) // Update with your backend endpoint
       .then((response) => {
         alert("Career added successfully!");
         setCareers([...careers, response.data]); // Add new career to state
@@ -55,8 +55,8 @@ const Careers = () => {
   // Handle career update (edit)
   const handleUpdate = (e) => {
     e.preventDefault();
-
-    axios.put(`https://www.directadmissionguideline.com/api/updateCarrer/${editingCareerId}`, formData) // Update with PUT request
+    
+    const response=axios.put(`https://www.directadmissionguideline.com/api/updateCarrer/${editingCareerId}`, formData) // Update with PUT request
       .then((response) => {
         alert("Career updated successfully!");
         setCareers(

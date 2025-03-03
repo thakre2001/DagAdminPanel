@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { apiServices } from '../services/apiServices';
+import { useNavigate } from 'react-router-dom';
 
 const Services = () => {
+  const navigate=useNavigate()
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -50,6 +52,8 @@ const Services = () => {
       const response = await apiServices.addService(formData);
       setFormData({ name: '', tittle: '', discription: '', img: '' });
       setServices([...services, response.data]); // Add the new service to the state
+      navigate('/services')
+
     } catch (err) {
       setError('Failed to add service');
       console.error('Error adding service:', err);
@@ -191,8 +195,8 @@ const Services = () => {
                   />
                 </div>
                 <div className="modal-footer">
-                  <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="submit" className="btn btn-primary">Add Service</button>
+                  <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" aria-label='Close'>Close</button>
+                  <button type="submit" className="btn btn-primary" data-bs-dismiss="modal" aria-label='Close'>Add Service</button>
                 </div>
               </form>
             </div>

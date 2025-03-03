@@ -14,9 +14,18 @@
 
 /* Hide sidebar by default on small screens using JS state */
 @media (max-width: 767px) {
-  .sidebar {
-    transform: translateX(-100%);
-  }
+    .sidebar {
+        width: 100%;
+        background-color: #343a40; /* Dark background */
+        color: #fff;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 40px;
+        overflow-y: auto;
+        transition: transform 0.3s ease;
+        z-index: 1100; /* Ensure it's above content */
+      }
 }
 
 /* Toggle Button styles for small screens */

@@ -15,16 +15,16 @@ const Sidebar = () => {
   return (
     <>
       <div class="sidebar">
-        <button>
-          <i className={isOpen?'fa fa-x':'fa fa-bar'}></i>
-        </button>
         <div className={sideBarClasses}>
           <div class="sidebar-logo">
             {/* <!-- Logo Header --> */}
-            <div class="logo-header" >
+            <div class="logo-header d-flex justify-content-between" >
               <Link to={'/dashboard'}>
                 <img src={navBrandImg} alt="navbar brand" class="navbar-brand" height="20" />
               </Link>
+              {/* <button onClick={toggleSideBar}>
+                <i className={isOpen?'fa fa-x':'fa fa-bars'}></i>
+              </button> */}
             </div>
             {/* <!-- End Logo Header --> */}
           </div>
@@ -48,7 +48,7 @@ const Sidebar = () => {
                   </li>
                   <li class="nav-section">
                     <span class="sidebar-mini-icon">
-                      <i class="fa fa-ellipsis-h"></i>
+                      <i class="fa fa-ellipsis"></i>
                     </span>
                     <h4 class="text-section">Components</h4>
                   </li>
@@ -62,6 +62,12 @@ const Sidebar = () => {
                     <Link to={'/careers'}>
                       <i class="fas fa-desktop"></i>
                       <p>Career</p>
+                    </Link>
+                  </li>
+                  <li class="nav-item">
+                    <Link to={'/inquiry'}>
+                      <i class="fas fa-desktop"></i>
+                      <p>Inquiry</p>
                     </Link>
                   </li>
                 </ul>
